@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Ubuntu,Jenkins,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="*本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布 本文主要介绍如何在Ubuntu搭建Jenkins实现Android项目的自动化打包，一般部署在我们的服务器，这里我通过虚拟机安装Ubuntu来进行演示 环境配置下载并配置java环境 通过java官网下载对应jdk版本 打开终端，输入以下命令行进行解压 1tar -zxvf jdk-8u181-linux-x64.tar.gz">
+<meta name="keywords" content="Ubuntu,Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu搭建Jenkins+Android自动化打包">
+<meta property="og:url" content="http://yoursite.com/2018/11/23/Ubuntu搭建Jenkins-Android自动化打包/index.html">
+<meta property="og:site_name" content="陈业盛&#39;s Blog">
+<meta property="og:description" content="*本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布 本文主要介绍如何在Ubuntu搭建Jenkins实现Android项目的自动化打包，一般部署在我们的服务器，这里我通过虚拟机安装Ubuntu来进行演示 环境配置下载并配置java环境 通过java官网下载对应jdk版本 打开终端，输入以下命令行进行解压 1tar -zxvf jdk-8u181-linux-x64.tar.gz">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-e4b448ca116b1864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-9603506715600100.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-e3dd5c2c2a48d437.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-8713ade423f19b1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-d80499e5659542a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-bf1c643e39581212.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-7e61c9d69da3c3d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-72e3b46846f2a024.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-813901e2078dc5d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-a29e1e38aa1d543e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-44ff44c7a25bd538.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-f351dadc42a1efb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-4366aed80fe0831d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1131117-2a9dc586c6810ccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-11-22T08:41:03.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu搭建Jenkins+Android自动化打包">
+<meta name="twitter:description" content="*本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布 本文主要介绍如何在Ubuntu搭建Jenkins实现Android项目的自动化打包，一般部署在我们的服务器，这里我通过虚拟机安装Ubuntu来进行演示 环境配置下载并配置java环境 通过java官网下载对应jdk版本 打开终端，输入以下命令行进行解压 1tar -zxvf jdk-8u181-linux-x64.tar.gz">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1131117-e4b448ca116b1864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/23/Ubuntu搭建Jenkins-Android自动化打包/">
+
+
+
+
+
+  <title>Ubuntu搭建Jenkins+Android自动化打包 | 陈业盛's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈业盛's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hello World</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/Ubuntu搭建Jenkins-Android自动化打包/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈业盛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈业盛's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ubuntu搭建Jenkins+Android自动化打包</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T00:38:45+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>*本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布</p>
+<p>本文主要介绍如何在Ubuntu搭建Jenkins实现Android项目的自动化打包，一般部署在我们的服务器，这里我通过虚拟机安装Ubuntu来进行演示</p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="下载并配置java环境"><a href="#下载并配置java环境" class="headerlink" title="下载并配置java环境"></a>下载并配置java环境</h2><ol>
+<li>通过<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">java官网</a>下载对应jdk版本</li>
+<li><p>打开终端，输入以下命令行进行解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u181-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将解压后的文件夹移动到/opt目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv jdk1.8.0_181 /opt/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在末尾添加如下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#set Java environment</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_181</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<ol start="5">
+<li><p>保存退出，使用source命令使其生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证java环境是否配置成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -vsersion</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<h2 id="安装配置nginx"><a href="#安装配置nginx" class="headerlink" title="安装配置nginx"></a>安装配置nginx</h2><p>为了使得外部能下载相关资源，安装并配置本地目录映射<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line">sudo service nginx start</span><br><span class="line">sudo vi /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure></p>
+<p>简单修改配置文件，添加如下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen 81;</span><br><span class="line">        server_name 192.168.80.140;</span><br><span class="line">        client_max_body_size 4G;</span><br><span class="line">        root /home/cc/pkg_bak;</span><br><span class="line">        location / &#123;</span><br><span class="line">                autoindex on;</span><br><span class="line">                autoindex_exact_size on;</span><br><span class="line">                autoindex_localtime on;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使配置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx reload</span><br></pre></td></tr></table></figure></p>
+<h1 id="Jenkins安装"><a href="#Jenkins安装" class="headerlink" title="Jenkins安装"></a>Jenkins安装</h1><p>可以根据<a href="https://pkg.jenkins.io/debian-stable/" target="_blank" rel="noopener">Jenkins官网</a>文档进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -</span><br><span class="line">sudo sh -c &apos;echo deb http://pkg.jenkins.io/debian-stable binary/ &gt; /etc/apt/sources.list.d/jenkins.list&apos;</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install jenkins</span><br></pre></td></tr></table></figure></p>
+<h2 id="修改Jenkins配置"><a href="#修改Jenkins配置" class="headerlink" title="修改Jenkins配置"></a>修改Jenkins配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/default/jenkins</span><br></pre></td></tr></table></figure>
+<p>修改端口号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 默认是8080端口</span><br><span class="line">HTTP_PORT=8081</span><br></pre></td></tr></table></figure></p>
+<h2 id="启动Jenkins"><a href="#启动Jenkins" class="headerlink" title="启动Jenkins"></a>启动Jenkins</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service jenkins start</span><br></pre></td></tr></table></figure>
+<p>启动完成，通过浏览器访问 <a href="http://192.168.80.140:8081" target="_blank" rel="noopener">http://192.168.80.140:8081</a> 即可看到启动界面</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-e4b448ca116b1864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="启动jenkins.png"></p>
+<p>根据提示通过查看 /var/lib/jenkins/secrets/initialAdminPassword 获取到密码即可</p>
+<p>然后根据提示安装需要的插件，创建用户，完成后出现下面的界面，Jenkins 搭建完成</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-9603506715600100.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="搭建完成.png"></p>
+<h1 id="配置Android项目编译环境"><a href="#配置Android项目编译环境" class="headerlink" title="配置Android项目编译环境"></a>配置Android项目编译环境</h1><h2 id="安装常用插件"><a href="#安装常用插件" class="headerlink" title="安装常用插件"></a>安装常用插件</h2><p>路径：系统管理-插件管理-可选插件，在搜索框输入你需要安装的插件进行安装即可</p>
+<p>常用插件有以下：</p>
+<ul>
+<li>Git plugin</li>
+<li>Git Parameter</li>
+<li>GitLab Plugin</li>
+<li>Gradle Plugin</li>
+<li>Android Emulator Plugin</li>
+<li>Android Lint Plugin</li>
+<li>description setter plugin</li>
+<li>Checkstyle Plug-in</li>
+<li>FindBugs Plug-in</li>
+<li>PMD Plug-in</li>
+<li>SSH Agent</li>
+<li>Role-based Authorization Strategy</li>
+<li>OWASP Markup Formatter Plugin</li>
+</ul>
+<h2 id="配置Git"><a href="#配置Git" class="headerlink" title="配置Git"></a>配置Git</h2><p>路径：系统管理-全局工具配置-Git</p>
+<p>因为Ubuntu已经安装了Git，所以默认配置即可</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-e3dd5c2c2a48d437.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置Git.png"></p>
+<h2 id="配置JDK"><a href="#配置JDK" class="headerlink" title="配置JDK"></a>配置JDK</h2><p>路径：系统管理-全局工具配置-JDK</p>
+<p>下载需要一个Oracle的帐号，添加完账户就可以了</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-8713ade423f19b1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置JDK.png"></p>
+<h2 id="配置Gradle"><a href="#配置Gradle" class="headerlink" title="配置Gradle"></a>配置Gradle</h2><p>路径：系统管理-全局工具配置-Gradle</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-d80499e5659542a3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置Gradle.png"></p>
+<h2 id="配置Android-SDK"><a href="#配置Android-SDK" class="headerlink" title="配置Android SDK"></a>配置Android SDK</h2><p>路径：系统管理-系统设置-Android</p>
+<p>填写SDK的存放路径，同时勾选自动下载，警告可以忽略</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-bf1c643e39581212.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置AndroidSDK.png"></p>
+<p>这个时候有一个问题需要注意，必须在sdk的目录下 添加license文件，去你本地的sdk下拷贝一份进去</p>
+<h1 id="新建工程"><a href="#新建工程" class="headerlink" title="新建工程"></a>新建工程</h1><p><img src="https://upload-images.jianshu.io/upload_images/1131117-7e61c9d69da3c3d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建工程.png"></p>
+<h2 id="填写General"><a href="#填写General" class="headerlink" title="填写General"></a>填写General</h2><p>一般会勾选丢弃旧的构建，防止服务器累计过多次的编译</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-72e3b46846f2a024.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="填写General.png"></p>
+<h2 id="填写源码管理"><a href="#填写源码管理" class="headerlink" title="填写源码管理"></a>填写源码管理</h2><p>使用Git来拉取代码</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1131117-813901e2078dc5d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="填写源码管理.png"></p>
+<h2 id="构建配置"><a href="#构建配置" class="headerlink" title="构建配置"></a>构建配置</h2><p><img src="https://upload-images.jianshu.io/upload_images/1131117-a29e1e38aa1d543e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置构建界面.png"></p>
+<p>上内容述执行的是：</p>
+<ol>
+<li>重置，清空项目内容</li>
+<li>将存在服务器的密钥信息、sdk目录等信息（local.properties），拷贝到项目中</li>
+<li>使用工程下的gradlew来构建项目，保持gradle版本与本地一致，Tasks中输入项目要编译的任务</li>
+</ol>
+<p>因为我的密钥读取是放到 local.properties 文件中的，所以可以做到服务器管控打包密钥，local.properties 内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">KEY_STORE=密钥路径</span><br><span class="line">KEY_STORE_PASSWORD=密码</span><br><span class="line">KEY_ALIAS=密钥别名</span><br><span class="line">KEY_ALIAS_PASSWORD=密码</span><br><span class="line">sdk.dir=sdk路径</span><br></pre></td></tr></table></figure></p>
+<h2 id="构建后配置"><a href="#构建后配置" class="headerlink" title="构建后配置"></a>构建后配置</h2><p>需要收集相应的apk和mapping文件<br><img src="https://upload-images.jianshu.io/upload_images/1131117-44ff44c7a25bd538.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置构建后界面.png"></p>
+<p>最后点击保存，通过简单配置，到此已经可以实现项目的构建了</p>
+<h1 id="更多定制化配置"><a href="#更多定制化配置" class="headerlink" title="更多定制化配置"></a>更多定制化配置</h1><h2 id="通过Git-Parameter插件实现分支选择"><a href="#通过Git-Parameter插件实现分支选择" class="headerlink" title="通过Git Parameter插件实现分支选择"></a>通过Git Parameter插件实现分支选择</h2><p><img src="https://upload-images.jianshu.io/upload_images/1131117-f351dadc42a1efb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="填写GitParameter.png"></p>
+<h2 id="集成360加固"><a href="#集成360加固" class="headerlink" title="集成360加固"></a>集成360加固</h2><p>从360官方下载相关文件，拷贝到/home/cc/backup/360jiagu目录，使用命令行的方式进行加固，详细可以查看<a href="http://jiagu.360.cn/#/global/help/164" target="_blank" rel="noopener">官方说明文档</a>，这里采用编写脚本文件实现自动加固，文件内容如下：</p>
+<p>脚本jiagu_360.sh存放路径/home/cc/backup/360jiagu/jiagu<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">BASE_JAR=/home/cc/backup/360jiagu/jiagu/jiagu.jar</span><br><span class="line">JIA_GU_NAME=账号</span><br><span class="line">JIA_GU_PSD=密码</span><br><span class="line"></span><br><span class="line">echo &quot;------ jiagu running! ------&quot;</span><br><span class="line">java -jar $&#123;BASE_JAR&#125; -version</span><br><span class="line">java -jar $&#123;BASE_JAR&#125; -login $&#123;JIA_GU_NAME&#125; $&#123;JIA_GU_PSD&#125;</span><br><span class="line"></span><br><span class="line">LOCAL_PATH=$1</span><br><span class="line">echo &quot;local.properties:$&#123;LOCAL_PATH&#125;&quot;</span><br><span class="line"></span><br><span class="line">KEY_STORE=`cat $&#123;LOCAL_PATH&#125; |grep KEY_STORE= | awk -F= &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">KEY_STORE_PASSWORD=`cat $&#123;LOCAL_PATH&#125; |grep KEY_STORE_PASSWORD= | awk -F= &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">KEY_ALIAS=`cat $&#123;LOCAL_PATH&#125; |grep KEY_ALIAS= | awk -F= &apos;&#123;print $2&#125;&apos;`</span><br><span class="line">KEY_ALIAS_PASSWORD=`cat $&#123;LOCAL_PATH&#125; |grep KEY_ALIAS_PASSWORD= | awk -F= &apos;&#123;print $2&#125;&apos;`</span><br><span class="line"></span><br><span class="line">java -jar $&#123;BASE_JAR&#125; -importsign $&#123;KEY_STORE&#125; $&#123;KEY_STORE_PASSWORD&#125; $&#123;KEY_ALIAS&#125; $&#123;KEY_ALIAS_PASSWORD&#125;</span><br><span class="line"></span><br><span class="line">java -jar $&#123;BASE_JAR&#125; -showsign</span><br><span class="line"></span><br><span class="line">BuildApkLine=$2</span><br><span class="line">Build_JiaGu_Dir=$3</span><br><span class="line">echo &quot;BuildApkLine:$&#123;BuildApkLine&#125;, Build_JiaGu_Dir=$&#123;Build_JiaGu_Dir&#125;&quot;</span><br><span class="line"></span><br><span class="line">java -jar $&#123;BASE_JAR&#125; -jiagu $BuildApkLine $Build_JiaGu_Dir -autosign	</span><br><span class="line"></span><br><span class="line">echo &quot;------ jiagu finished! ------&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="生成二维码，在构建历史展示更多信息"><a href="#生成二维码，在构建历史展示更多信息" class="headerlink" title="生成二维码，在构建历史展示更多信息"></a>生成二维码，在构建历史展示更多信息</h2><ol>
+<li>安装<code>description setter plugin</code>插件</li>
+<li><p>在Ubuntu上安装qrencode, 用于生成二维码图片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install qrencode</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改构建任务，在项目编译完加固完成后执行下面命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">BuildApkLine=`find ./jiagu -name *_jiagu_sign.apk`</span><br><span class="line"></span><br><span class="line"># 备份到文件服务器</span><br><span class="line">PkgBakDir=&quot;/home/cc/pkg_bak/$&#123;JOB_NAME&#125;&quot;</span><br><span class="line">if [ ! -d &quot;$PkgBakDir&quot; ]; then</span><br><span class="line">mkdir $PkgBakDir</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">BuildDir=&quot;$PkgBakDir/$&#123;BUILD_NUMBER&#125;&quot;</span><br><span class="line">if [ ! -d &quot;$BuildDir&quot; ]; then</span><br><span class="line">mkdir $BuildDir</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">ApkName=$&#123;BuildApkLine##*/&#125;</span><br><span class="line"></span><br><span class="line">LastestApkName=&quot;dev_lastest.apk&quot;</span><br><span class="line"></span><br><span class="line">cp $BuildApkLine $BuildDir</span><br><span class="line"></span><br><span class="line">if [ -f &quot;$PkgBakDir/$LastestApkName&quot; ]; then</span><br><span class="line">rm $PkgBakDir/$LastestApkName</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">ln -s &quot;$BuildDir/$ApkName&quot; &quot;$PkgBakDir/$LastestApkName&quot;</span><br><span class="line"></span><br><span class="line">QrcodeValue=&quot;http://192.168.80.140:81/$&#123;JOB_NAME&#125;/$&#123;BUILD_NUMBER&#125;/$ApkName&quot;</span><br><span class="line">echo &quot;QrcodeValue is $QrcodeValue&quot; </span><br><span class="line"></span><br><span class="line">LastQrcodeValue=&quot;http://192.168.80.140:81/$&#123;JOB_NAME&#125;/$LastestApkName&quot;</span><br><span class="line">echo &quot;LastQrcodeValue is $LastQrcodeValue&quot; </span><br><span class="line"></span><br><span class="line"># 将debug apk的下载地址 生成二维码，以供下载</span><br><span class="line">qrencode -o qrcode.png $QrcodeValue</span><br><span class="line"></span><br><span class="line"># 将debug apk的下载地址 生成二维码，以供下载</span><br><span class="line">qrencode -o last_qrcode.png $LastQrcodeValue</span><br><span class="line"></span><br><span class="line"># 输出debug apk的下载地址，机械号，版本名称</span><br><span class="line">echo &quot;BuildUrl: $QrcodeValue,$VersionCode,$VersionName,$dev_branch,$Tasks&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构建后操作，添加Set build description<br><img src="https://upload-images.jianshu.io/upload_images/1131117-4366aed80fe0831d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="构建后操作.png"></p>
+</li>
+</ol>
+<p>这里解释一下这两个参数：</p>
+<ul>
+<li>Regular expression：BuildUrl: (.<em>),(.</em>),(.<em>),(.</em>)<br>通过正则匹配获取到上面BuildUrl的4个参数，分别为apk地址、机械号、版本名称、分支名称</li>
+<li>Description，描述，这里以html格式输出其中 \1，\2..分别对应上面匹配的4个参数</li>
+</ul>
+<ol start="5">
+<li>完成后的结果如下：<br><img src="https://upload-images.jianshu.io/upload_images/1131117-2a9dc586c6810ccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图.png"></li>
+</ol>
+<h2 id="集成fir自动上传"><a href="#集成fir自动上传" class="headerlink" title="集成fir自动上传"></a>集成fir自动上传</h2><p>打包完成后实现自动上传到fir，可参考 <a href="https://fir.im/docs/publish" target="_blank" rel="noopener">fir官方文档</a>，这里我们通过编写Python脚本实现自动上传功能，脚本代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line"># 需要的参数</span><br><span class="line">REQUEST_PARAM = &#123;</span><br><span class="line">    &apos;api_token&apos;: &apos;这里填写自己的token信息&apos;,</span><br><span class="line">    &apos;type&apos;: &apos;android&apos;,</span><br><span class="line">    &apos;applicationId&apos;: &apos;com.xxx.xxx&apos;,</span><br><span class="line">    &apos;appName&apos;: &apos;应用名称&apos;,</span><br><span class="line">    &apos;versionName&apos;: &apos;1.0.1.0&apos;,</span><br><span class="line">    &apos;versionCode&apos;: &apos;10&apos;,</span><br><span class="line">    &apos;changelog_path&apos;: &apos;changelog文件地址&apos;,</span><br><span class="line">    &apos;apk_path&apos;: &apos;apk地址&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 初始化传入的参数</span><br><span class="line">def init_param():</span><br><span class="line">    print(&apos;获取到传递过来的参数：&apos;, str(sys.argv))</span><br><span class="line">    REQUEST_PARAM[&apos;type&apos;] = sys.argv[1]</span><br><span class="line">    REQUEST_PARAM[&apos;applicationId&apos;] = sys.argv[2]</span><br><span class="line">    REQUEST_PARAM[&apos;appName&apos;] = sys.argv[3]</span><br><span class="line">    REQUEST_PARAM[&apos;versionName&apos;] = sys.argv[4]</span><br><span class="line">    REQUEST_PARAM[&apos;versionCode&apos;] = sys.argv[5]</span><br><span class="line">    REQUEST_PARAM[&apos;changelog_path&apos;] = sys.argv[6]</span><br><span class="line">    REQUEST_PARAM[&apos;apk_path&apos;] = sys.argv[7]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 获取上传凭证</span><br><span class="line">def get_cert():</span><br><span class="line">    print(&apos;发起获取上传凭证请求&apos;)</span><br><span class="line">    param = &#123;&apos;type&apos;: REQUEST_PARAM[&apos;type&apos;],</span><br><span class="line">             &apos;bundle_id&apos;: REQUEST_PARAM[&apos;applicationId&apos;],</span><br><span class="line">             &apos;api_token&apos;: REQUEST_PARAM[&apos;api_token&apos;]&#125;</span><br><span class="line">    print(&apos;获取上传凭证请求参数：&apos;, param)</span><br><span class="line">    req = requests.post(url=&apos;http://api.fir.im/apps&apos;, data=param)</span><br><span class="line">    cert_response = req.content</span><br><span class="line">    print(&apos;获取上传凭证响应：&apos;, str(cert_response))</span><br><span class="line">    return cert_response</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 上传到fir</span><br><span class="line">def upload_fir(binary, apk_path):</span><br><span class="line">    binary_key = binary[&apos;key&apos;]</span><br><span class="line">    binary_token = binary[&apos;token&apos;]</span><br><span class="line">    binary_upload_url = binary[&apos;upload_url&apos;]</span><br><span class="line"></span><br><span class="line">    print(&apos;开始上传Apk&apos;)</span><br><span class="line">    changelog_str = open(REQUEST_PARAM[&apos;changelog_path&apos;]).read()</span><br><span class="line">    file = &#123;&apos;file&apos;: open(apk_path, &apos;rb&apos;)&#125;</span><br><span class="line">    param = &#123;</span><br><span class="line">        &quot;key&quot;: binary_key,</span><br><span class="line">        &quot;token&quot;: binary_token,</span><br><span class="line">        &quot;x:name&quot;: REQUEST_PARAM[&apos;appName&apos;],</span><br><span class="line">        &apos;x:version&apos;: REQUEST_PARAM[&apos;versionName&apos;],</span><br><span class="line">        &apos;x:build&apos;: REQUEST_PARAM[&apos;versionCode&apos;],</span><br><span class="line">        &quot;x:changelog&quot;: changelog_str</span><br><span class="line">    &#125;</span><br><span class="line">    req = requests.post(binary_upload_url, files=file, data=param)</span><br><span class="line">    print(&apos;上传结果：&apos;, req.content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    init_param()</span><br><span class="line">    response = get_cert()</span><br><span class="line">    # 得到获取上传凭证回调信息</span><br><span class="line">    cert_json = json.loads(response)</span><br><span class="line">    cert_binary = cert_json[&apos;cert&apos;][&apos;binary&apos;]</span><br><span class="line">    # 上传fir</span><br><span class="line">    upload_fir(cert_binary, REQUEST_PARAM[&apos;apk_path&apos;])</span><br></pre></td></tr></table></figure>
+<p>脚本代码注释也比较详细，不再展开说明，最后通过在上面加固完成后的shell脚本后面追加以下内容来实现自动上传</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 编写日志内容</span><br><span class="line">ChangeLog=changelog.txt</span><br><span class="line">echo &quot;Uploaded by fir cli&quot; &gt;&gt; $ChangeLog</span><br><span class="line">echo &quot;构建编号：$&#123;BUILD_NUMBER&#125;&quot; &gt;&gt; $ChangeLog</span><br><span class="line">echo &quot;修改记录：&quot;  &gt;&gt; $ChangeLog</span><br><span class="line">echo &quot;$&#123;SCM_CHANGELOG&#125;&quot;  &gt;&gt; $ChangeLog</span><br><span class="line"></span><br><span class="line">cat $ChangeLog</span><br><span class="line"></span><br><span class="line">python /home/cc/backup/fir/uploadFir.py android $ApplicationId $AppName $VersionCode $VersionName $ChangeLog $BuildApkLine</span><br></pre></td></tr></table></figure>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="Jenkins启动可能出现的问题"><a href="#Jenkins启动可能出现的问题" class="headerlink" title="Jenkins启动可能出现的问题"></a>Jenkins启动可能出现的问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Job for jenkins.service failed because the control process exited with error code. See “systemctl status jenkins.service” and “journalctl -xe” for details.</span><br></pre></td></tr></table></figure>
+<p>根据提示输入<code>sudo systemctl status jenkins.service</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">● jenkins.service - LSB: Start Jenkins at boot time</span><br><span class="line">   Loaded: loaded (/etc/init.d/jenkins; generated)</span><br><span class="line">   Active: failed (Result: exit-code) since Thu 2018-10-18 11:19:37 CST; 21s ago</span><br><span class="line">     Docs: man:systemd-sysv-generator(8)</span><br><span class="line">  Process: 3896 ExecStart=/etc/init.d/jenkins start (code=exited, status=1/FAILURE)</span><br><span class="line"></span><br><span class="line">10月 18 11:19:37 cc-virtual-machine systemd[1]: Starting LSB: Start Jenkins at boot time...</span><br><span class="line">10月 18 11:19:37 cc-virtual-machine jenkins[3896]: ERROR: No Java executable found in current PATH: /bin:/usr/bin:</span><br><span class="line">10月 18 11:19:37 cc-virtual-machine jenkins[3896]: If you actually have java installed on the system make sure the</span><br><span class="line">10月 18 11:19:37 cc-virtual-machine systemd[1]: jenkins.service: Control process exited, code=exited status=1</span><br><span class="line">10月 18 11:19:37 cc-virtual-machine systemd[1]: jenkins.service: Failed with result &apos;exit-code&apos;.</span><br><span class="line">10月 18 11:19:37 cc-virtual-machine systemd[1]: Failed to start LSB: Start Jenkins at boot time.</span><br></pre></td></tr></table></figure></p>
+<p>从错误日志可以看出找不到java路径，解决方法：创建一条软链接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /opt/jdk1.8.0_191/bin/java /usr/bin/java</span><br></pre></td></tr></table></figure></p>
+<h2 id="Jenkins权限问题"><a href="#Jenkins权限问题" class="headerlink" title="Jenkins权限问题"></a>Jenkins权限问题</h2><p>Jenkins在执行shell脚本的时候可能出现权限问题，我们可以把jenkins账户加入到root组</p>
+<ol>
+<li><p>将jenkins账户加入到root组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gpasswd -a root jenkins</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改 /etc/default/jenkins 内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># user and group to be invoked as (default to jenkins)</span><br><span class="line">JENKINS_USER=root</span><br><span class="line">JENKINS_GROUP=root</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启jenkins</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service jenkins restart</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看是否已经加入到root组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/group |grep jenkins</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jenkins:x:127:root</span><br></pre></td></tr></table></figure>
+<h2 id="文件权限问题"><a href="#文件权限问题" class="headerlink" title="文件权限问题"></a>文件权限问题</h2><p>错误信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/home/cc/backup/360jiagu/jiagu/jiagu_360.sh ./local.properties app/build/bakApk/resguard/ry_taxi_passenger20_1.0.2.0.apk ./jiagu</span><br><span class="line">/tmp/jenkins9129980792461988922.sh: 20: /tmp/jenkins9129980792461988922.sh: /home/cc/backup/360jiagu/jiagu/jiagu_360.sh: Permission denied</span><br></pre></td></tr></table></figure></p>
+<p>修改该文件权限即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 /home/cc/backup/360jiagu/jiagu/jiagu_360.sh</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          
+            <a href="/tags/Jenkins/" rel="tag"># Jenkins</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/23/MaterialDesign（五），TabLayout使用以及如何避坑/" rel="next" title="MaterialDesign（五），TabLayout使用以及如何避坑">
+                <i class="fa fa-chevron-left"></i> MaterialDesign（五），TabLayout使用以及如何避坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">陈业盛</p>
+              <p class="site-description motion-element" itemprop="description">Android开发者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chenyesheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="350654831@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载并配置java环境"><span class="nav-number">1.1.</span> <span class="nav-text">下载并配置java环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git安装"><span class="nav-number">1.2.</span> <span class="nav-text">Git安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置nginx"><span class="nav-number">1.3.</span> <span class="nav-text">安装配置nginx</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jenkins安装"><span class="nav-number">2.</span> <span class="nav-text">Jenkins安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改Jenkins配置"><span class="nav-number">2.1.</span> <span class="nav-text">修改Jenkins配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Jenkins"><span class="nav-number">2.2.</span> <span class="nav-text">启动Jenkins</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Android项目编译环境"><span class="nav-number">3.</span> <span class="nav-text">配置Android项目编译环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装常用插件"><span class="nav-number">3.1.</span> <span class="nav-text">安装常用插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Git"><span class="nav-number">3.2.</span> <span class="nav-text">配置Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置JDK"><span class="nav-number">3.3.</span> <span class="nav-text">配置JDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Gradle"><span class="nav-number">3.4.</span> <span class="nav-text">配置Gradle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置Android-SDK"><span class="nav-number">3.5.</span> <span class="nav-text">配置Android SDK</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建工程"><span class="nav-number">4.</span> <span class="nav-text">新建工程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#填写General"><span class="nav-number">4.1.</span> <span class="nav-text">填写General</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#填写源码管理"><span class="nav-number">4.2.</span> <span class="nav-text">填写源码管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建配置"><span class="nav-number">4.3.</span> <span class="nav-text">构建配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建后配置"><span class="nav-number">4.4.</span> <span class="nav-text">构建后配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多定制化配置"><span class="nav-number">5.</span> <span class="nav-text">更多定制化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过Git-Parameter插件实现分支选择"><span class="nav-number">5.1.</span> <span class="nav-text">通过Git Parameter插件实现分支选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成360加固"><span class="nav-number">5.2.</span> <span class="nav-text">集成360加固</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成二维码，在构建历史展示更多信息"><span class="nav-number">5.3.</span> <span class="nav-text">生成二维码，在构建历史展示更多信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集成fir自动上传"><span class="nav-number">5.4.</span> <span class="nav-text">集成fir自动上传</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见问题"><span class="nav-number">6.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins启动可能出现的问题"><span class="nav-number">6.1.</span> <span class="nav-text">Jenkins启动可能出现的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jenkins权限问题"><span class="nav-number">6.2.</span> <span class="nav-text">Jenkins权限问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件权限问题"><span class="nav-number">6.3.</span> <span class="nav-text">文件权限问题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈业盛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

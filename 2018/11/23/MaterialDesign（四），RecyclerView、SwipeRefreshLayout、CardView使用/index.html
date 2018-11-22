@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MaterialDesign,RecyclerView,SwipeRefreshLayout,CardView,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是 RecyclerViewRecyclerView 到现在为止可以说是人人皆知了，到目前 RecyclerView 已经完全替代了以前的 ListView、GridView等控件，可以说 RecyclerView 使用起来更加的灵活，高度解耦，高度可定制化，能实现的效果也是非常之多 什么是 SwipeRefreshLayoutSwipeRefreshLayout 是 Google 官方推出的">
+<meta name="keywords" content="MaterialDesign,RecyclerView,SwipeRefreshLayout,CardView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用">
+<meta property="og:url" content="http://yoursite.com/2018/11/23/MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用/index.html">
+<meta property="og:site_name" content="陈业盛&#39;s Blog">
+<meta property="og:description" content="什么是 RecyclerViewRecyclerView 到现在为止可以说是人人皆知了，到目前 RecyclerView 已经完全替代了以前的 ListView、GridView等控件，可以说 RecyclerView 使用起来更加的灵活，高度解耦，高度可定制化，能实现的效果也是非常之多 什么是 SwipeRefreshLayoutSwipeRefreshLayout 是 Google 官方推出的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1131117-d5e4c1f343a72af4.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-11-22T08:27:03.923Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用">
+<meta name="twitter:description" content="什么是 RecyclerViewRecyclerView 到现在为止可以说是人人皆知了，到目前 RecyclerView 已经完全替代了以前的 ListView、GridView等控件，可以说 RecyclerView 使用起来更加的灵活，高度解耦，高度可定制化，能实现的效果也是非常之多 什么是 SwipeRefreshLayoutSwipeRefreshLayout 是 Google 官方推出的">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1131117-d5e4c1f343a72af4.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/23/MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用/">
+
+
+
+
+
+  <title>MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用 | 陈业盛's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈业盛's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hello World</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈业盛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈业盛's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T00:26:33+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/MaterialDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">MaterialDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是-RecyclerView"><a href="#什么是-RecyclerView" class="headerlink" title="什么是 RecyclerView"></a>什么是 RecyclerView</h1><p>RecyclerView 到现在为止可以说是人人皆知了，到目前 RecyclerView 已经完全替代了以前的 ListView、GridView等控件，可以说 RecyclerView 使用起来更加的灵活，高度解耦，高度可定制化，能实现的效果也是非常之多</p>
+<h1 id="什么是-SwipeRefreshLayout"><a href="#什么是-SwipeRefreshLayout" class="headerlink" title="什么是 SwipeRefreshLayout"></a>什么是 SwipeRefreshLayout</h1><p>SwipeRefreshLayout 是 Google 官方推出的一款下拉刷新组件。使用起来也是非常的方便</p>
+<h1 id="什么是-CardView"><a href="#什么是-CardView" class="headerlink" title="什么是 CardView"></a>什么是 CardView</h1><p>CardView 继承自 FrameLayout 类，是一种卡片视图，主要是以卡片形式显示内容，可实现圆角和阴影效果的一个控件。大多时候作为 RecyclerView 等列表控件的 item 进行使用</p>
+<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><p>按照惯例，我们先看一下效果图：<br><img src="http://upload-images.jianshu.io/upload_images/1131117-d5e4c1f343a72af4.gif?imageMogr2/auto-orient/strip" alt="RecyclerView.gif"></p>
+<p>从效果图来看，该效果是从上一篇 <a href="https://www.jianshu.com/p/80fe6a4e161a" target="_blank" rel="noopener">MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用</a> 的基础上实现的，主要实现了 RecyclerView 提供的四种 LayoutManager，RecyclerView item 点击回调监听；SwipeRefreshLayout 下拉刷新操作；CardView 作为 item 的布局展示，下面看看具体实现</p>
+<ol>
+<li><p>引入 com.android.support:cardview<br>由于 RecyclerView 是 v7 包的控件，v7 包之前已经引入过了，在此仅需单独引入 CardView 对应包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.android.support:cardview-v7:26.1.0&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>xml 文件创建<br>activity 的 xml 布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// ...这里省略了 CoordinatorLayout 相关，完整代码请查看文末的 demo</span><br><span class="line">&lt;android.support.v4.widget.SwipeRefreshLayout</span><br><span class="line">    android:id=&quot;@+id/refresh_layout&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.v7.widget.RecyclerView</span><br><span class="line">        android:id=&quot;@+id/recycler_view&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;/&gt;</span><br><span class="line">&lt;/android.support.v4.widget.SwipeRefreshLayout&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>item 的 xml 布局<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;android.support.v7.widget.CardView</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    android:layout_width=&quot;140dp&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_margin=&quot;10dp&quot;</span><br><span class="line">    app:cardBackgroundColor=&quot;#ffffdd&quot;</span><br><span class="line">    app:cardCornerRadius=&quot;5dp&quot;</span><br><span class="line">    app:cardElevation=&quot;5dp&quot;</span><br><span class="line">    app:contentPadding=&quot;10dp&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:orientation=&quot;horizontal&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;ImageView</span><br><span class="line">            android:id=&quot;@+id/iv_item&quot;</span><br><span class="line">            android:layout_width=&quot;60dp&quot;</span><br><span class="line">            android:layout_height=&quot;50dp&quot;</span><br><span class="line">            android:scaleType=&quot;centerCrop&quot;</span><br><span class="line">            android:src=&quot;@drawable/android_bg&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tv_item&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;match_parent&quot;</span><br><span class="line">            android:gravity=&quot;center&quot;/&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/android.support.v7.widget.CardView&gt;</span><br></pre></td></tr></table></figure></p>
+<p>SwipeRefreshLayout 和 RecyclerView 的 xml 使用非常简单，不作过多说明，这里主要看 item 中的 CardView 控件，CardView 作为 item 的根布局，里面可以包含任意控件，重点关注一下 CardView 的几个属性</p>
+<ul>
+<li><p>app:cardBackgroundColor 设置卡片布局的背景色</p>
+</li>
+<li><p>app:cardCornerRadius 设置卡片布局的圆角大小</p>
+</li>
+<li><p>app:cardElevation 设置卡片布局的阴影大小</p>
+</li>
+<li><p>app:contentPadding 设置卡片布局内容于边距的间隔</p>
+</li>
+</ul>
+<p>这里只列举几个比较常用的属性值设置，更多属性值可查看 API 文档，这些属性也支持在代码中进行设置</p>
+<ol start="3">
+<li>Activity 中获取并设置相关属性值，以及事件监听<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line">@BindView(R.id.refresh_layout)</span><br><span class="line">SwipeRefreshLayout mRefreshLayout;</span><br><span class="line">@BindView(R.id.recycler_view)</span><br><span class="line">RecyclerView mRecyclerView;</span><br><span class="line"></span><br><span class="line">mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onMenuItemClick(MenuItem item) &#123;</span><br><span class="line">        switch (item.getItemId()) &#123;</span><br><span class="line">            case R.id.action_vertical_layout:</span><br><span class="line">                LinearLayoutManager verticalManager = new LinearLayoutManager(CoordinatorLayoutActivity.this, LinearLayoutManager.VERTICAL, false);</span><br><span class="line">                mRecyclerView.setLayoutManager(verticalManager);</span><br><span class="line">                break;</span><br><span class="line">            case R.id.action_horizontal_layout:</span><br><span class="line">                LinearLayoutManager horizontalManager = new LinearLayoutManager(CoordinatorLayoutActivity.this, LinearLayoutManager.HORIZONTAL, false);</span><br><span class="line">                mRecyclerView.setLayoutManager(horizontalManager);</span><br><span class="line">                break;</span><br><span class="line">            case R.id.action_grid_layout:</span><br><span class="line">                GridLayoutManager gridLayoutManager = new GridLayoutManager(CoordinatorLayoutActivity.this, 2);</span><br><span class="line">                mRecyclerView.setLayoutManager(gridLayoutManager);</span><br><span class="line">                break;</span><br><span class="line">            case R.id.action_staggered_grid_layout:</span><br><span class="line">                StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);</span><br><span class="line">                // 空隙不作处理，防止item乱跳</span><br><span class="line">                staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);</span><br><span class="line">                mRecyclerView.setLayoutManager(staggeredGridLayoutManager);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 设置进度条颜色，支持多颜色，第一个颜色值会在手势下拉时作为显示</span><br><span class="line">mRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE);</span><br><span class="line">mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onRefresh() &#123;</span><br><span class="line">        // 延时2秒执行，模拟网络访问</span><br><span class="line">        new Handler().postDelayed(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                // 结束刷新</span><br><span class="line">                mRefreshLayout.setRefreshing(false);</span><br><span class="line">                Toast.makeText(CoordinatorLayoutActivity.this, &quot;刷新完成&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 2000);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);</span><br><span class="line">mRecyclerView.setLayoutManager(linearLayoutManager);</span><br><span class="line">final ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">for (int i = 0; i &lt; 20; i++) &#123;</span><br><span class="line">    list.add(i + &quot;&quot;);</span><br><span class="line">&#125;</span><br><span class="line">MyRecyclerViewAdapter adapter = new MyRecyclerViewAdapter(list);</span><br><span class="line">mRecyclerView.setAdapter(adapter);</span><br><span class="line"></span><br><span class="line">adapter.setOnItemClickListener(new MyRecyclerViewAdapter.IOnItemClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onItemClick(View view, int position) &#123;</span><br><span class="line">        Toast.makeText(CoordinatorLayoutActivity.this, &quot;点击了：&quot; + list.get(position), Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line">public class MyRecyclerViewAdapter extends RecyclerView.Adapter&lt;MyRecyclerViewAdapter.MyViewHolder&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private ArrayList&lt;String&gt; mList;</span><br><span class="line"></span><br><span class="line">    private IOnItemClickListener mOnItemClickListener;</span><br><span class="line"></span><br><span class="line">    public MyRecyclerViewAdapter(ArrayList&lt;String&gt; list) &#123;</span><br><span class="line">        this.mList = list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public MyRecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) &#123;</span><br><span class="line">        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_layout, parent, false);</span><br><span class="line">        return new MyViewHolder(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onBindViewHolder(final MyViewHolder holder, int position) &#123;</span><br><span class="line">        holder.mTextView.setText(mList.get(position));</span><br><span class="line">        // 动态改变 ImageView 高度</span><br><span class="line">        ViewGroup.LayoutParams params = holder.mImageView.getLayoutParams();</span><br><span class="line">        params.height = (int) (100 + Math.random() * 200);</span><br><span class="line">        holder.mImageView.setLayoutParams(params);</span><br><span class="line"></span><br><span class="line">        // 设置item点击监听</span><br><span class="line">        if (null != mOnItemClickListener) &#123;</span><br><span class="line">            holder.itemView.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onClick(View view) &#123;</span><br><span class="line">                    mOnItemClickListener.onItemClick(view, holder.getLayoutPosition());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getItemCount() &#123;</span><br><span class="line">        return mList.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 设置item监听器</span><br><span class="line">     *</span><br><span class="line">     * @param onItemClickListener</span><br><span class="line">     */</span><br><span class="line">    public void setOnItemClickListener(IOnItemClickListener onItemClickListener) &#123;</span><br><span class="line">        mOnItemClickListener = onItemClickListener;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class MyViewHolder extends RecyclerView.ViewHolder &#123;</span><br><span class="line">        public ImageView mImageView;</span><br><span class="line">        public TextView mTextView;</span><br><span class="line"></span><br><span class="line">        public MyViewHolder(View itemView) &#123;</span><br><span class="line">            super(itemView);</span><br><span class="line">            mImageView = itemView.findViewById(R.id.iv_item);</span><br><span class="line">            mTextView = itemView.findViewById(R.id.tv_item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * item 回调监听</span><br><span class="line">     * 由于 RecyclerView 没有提供item的点击监听，所以要自己提供接口进行回调</span><br><span class="line">     */</span><br><span class="line">    public interface IOnItemClickListener &#123;</span><br><span class="line">        void onItemClick(View view, int position);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>首先看 SwipeRefreshLayout 设置了下拉时进度条的颜色值，并设置了刷新时的事件监听，在里面我们延时2秒（模拟网络访问）执行了 <code>mRefreshLayout.setRefreshing(false)</code> 方法来结束刷新，必须调用此方法后进度条才会消失</p>
+<p>重点看一下 RecyclerView 的使用。首先要为 RecyclerView 设置 LayoutManager，然后和 ListView 用法类似，也是需呀设置 Adapter。比较麻烦的是如果你需要设置 item 的分割线，需要调用  <code>mRecyclerView.addItemDecoration()</code> 方法进行设置，该方法的参数是 RecyclerView.ItemDecoration，需要我们自己去实现，如果只是简单的分割线，我一般都会在 item 的 xml 布局里进行添加。还有 RecyclerView 并没有为我们提供 item 点击事件的设置，所以我们要在 Adapter 里提供一个接口回调，再进行设置，其他事件类似。</p>
+<p>adapter 的代码和 ListView 的 adapter 用法区别不大，在 onBindViewHolder 方法里，我们动态改变 ImageView 的高度主要是为了在为 RecyclerView 设置 StaggeredGridLayoutManager（瀑布流） 的时候能较明显的看出其效果</p>
+<p>最后在 Toolbar 菜单项点击的时候对 RecyclerView 的 LayoutManager 进行切换，展示系统提供的几种布局</p>
+<ul>
+<li>LinearLayoutManager 线性管理器，支持横向、纵向</li>
+<li>GridLayoutManager 网格布局管理器</li>
+<li>StaggeredGridLayoutManager 瀑布流式布局管理器</li>
+</ul>
+<p>这里我们只是简单的介绍一下 RecyclerView，如果想要更详细的学习，可以参考鸿洋大神的文章 <a href="http://blog.csdn.net/lmj623565791/article/details/45059587" target="_blank" rel="noopener">Android RecyclerView 使用完全解析 体验艺术般的控件</a></p>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>本文主要简单介绍了 RecyclerView + SwipeRefreshLayout + CardView 的使用。RecyclerView 在实际开发中应用非常广泛，只有你想不到，没有他做不到的时候，所以 RecyclerView 还是非常值得学习使用的。本文 demo 已上传到 <a href="https://github.com/chenyesheng/MaterialDesignDemo" target="_blank" rel="noopener">github</a></p>
+<p>下面是几个控件的官方 API 地址（自备梯子）</p>
+<ul>
+<li><a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html" target="_blank" rel="noopener">RecyclerView API</a></li>
+<li><a href="https://developer.android.com/reference/android/support/v4/widget/SwipeRefreshLayout.html" target="_blank" rel="noopener">SwipeRefreshLayout API</a></li>
+<li><a href="https://developer.android.com/reference/android/support/v7/widget/CardView.html" target="_blank" rel="noopener">CardView API</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MaterialDesign/" rel="tag"># MaterialDesign</a>
+          
+            <a href="/tags/RecyclerView/" rel="tag"># RecyclerView</a>
+          
+            <a href="/tags/SwipeRefreshLayout/" rel="tag"># SwipeRefreshLayout</a>
+          
+            <a href="/tags/CardView/" rel="tag"># CardView</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/23/MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用/" rel="next" title="MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用">
+                <i class="fa fa-chevron-left"></i> MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/23/MaterialDesign（五），TabLayout使用以及如何避坑/" rel="prev" title="MaterialDesign（五），TabLayout使用以及如何避坑">
+                MaterialDesign（五），TabLayout使用以及如何避坑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">陈业盛</p>
+              <p class="site-description motion-element" itemprop="description">Android开发者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chenyesheng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="350654831@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-RecyclerView"><span class="nav-number">1.</span> <span class="nav-text">什么是 RecyclerView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-SwipeRefreshLayout"><span class="nav-number">2.</span> <span class="nav-text">什么是 SwipeRefreshLayout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-CardView"><span class="nav-number">3.</span> <span class="nav-text">什么是 CardView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单使用"><span class="nav-number">4.</span> <span class="nav-text">简单使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈业盛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="ToolBar,MaterialDesign,">
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="Android开发者">
-<meta name="keywords" content="Android">
-<meta property="og:type" content="website">
-<meta property="og:title" content="陈业盛&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="什么是 Toolbar A Toolbar is a generalization of action bars for use within application layouts. While an action bar is traditionally part of an Activity’s opaque window decor controlled by the framework,">
+<meta name="keywords" content="ToolBar,MaterialDesign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MaterialDesign（一），ToolBar使用">
+<meta property="og:url" content="http://yoursite.com/2018/11/23/MaterialDesign（一），ToolBar使用/index.html">
 <meta property="og:site_name" content="陈业盛&#39;s Blog">
-<meta property="og:description" content="Android开发者">
+<meta property="og:description" content="什么是 Toolbar A Toolbar is a generalization of action bars for use within application layouts. While an action bar is traditionally part of an Activity’s opaque window decor controlled by the framework,">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1131117-247da59ae360eaff.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-11-22T08:22:29.690Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="陈业盛&#39;s Blog">
-<meta name="twitter:description" content="Android开发者">
+<meta name="twitter:title" content="MaterialDesign（一），ToolBar使用">
+<meta name="twitter:description" content="什么是 Toolbar A Toolbar is a generalization of action bars for use within application layouts. While an action bar is traditionally part of an Activity’s opaque window decor controlled by the framework,">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1131117-247da59ae360eaff.gif?imageMogr2/auto-orient/strip">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/11/23/MaterialDesign（一），ToolBar使用/">
 
 
 
 
 
-  <title>陈业盛's Blog</title>
+  <title>MaterialDesign（一），ToolBar使用 | 陈业盛's Blog</title>
   
 
 
@@ -144,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -260,762 +262,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/Ubuntu搭建Jenkins-Android自动化打包/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈业盛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈业盛's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/Ubuntu搭建Jenkins-Android自动化打包/" itemprop="url">Ubuntu搭建Jenkins+Android自动化打包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T16:38:45Z">
-                2018-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          *本篇文章已授权微信公众号 guolin_blog （郭霖）独家发布
-本文主要介绍如何在Ubuntu搭建Jenkins实现Android项目的自动化打包，一般部署在我们的服务器，这里我通过虚拟机安装Ubuntu来进行演示
-环境配置下载并配置java环境
-通过java官网下载对应jdk版本
-打开终端，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/Ubuntu搭建Jenkins-Android自动化打包/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/MaterialDesign（五），TabLayout使用以及如何避坑/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈业盛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈业盛's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/MaterialDesign（五），TabLayout使用以及如何避坑/" itemprop="url">MaterialDesign（五），TabLayout使用以及如何避坑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T16:28:19Z">
-                2018-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/MaterialDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">MaterialDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          什么是 TabLayout
-TabLayout provides a horizontal layout to display tabs.
-
-官方介绍，TabLayout 是一个横向标签显示的布局，效果就是现在很多新闻客户端的那种顶部标签展示效果，并支持指示器、 ViewPager 联动
-简单使用按
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/MaterialDesign（五），TabLayout使用以及如何避坑/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈业盛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈业盛's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用/" itemprop="url">MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T16:26:33Z">
-                2018-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/MaterialDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">MaterialDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          什么是 RecyclerViewRecyclerView 到现在为止可以说是人人皆知了，到目前 RecyclerView 已经完全替代了以前的 ListView、GridView等控件，可以说 RecyclerView 使用起来更加的灵活，高度解耦，高度可定制化，能实现的效果也是非常之多
-什么是 S
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/MaterialDesign（四），RecyclerView、SwipeRefreshLayout、CardView使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈业盛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈业盛's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用/" itemprop="url">MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T16:24:56Z">
-                2018-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/MaterialDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">MaterialDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          什么是 CoordinatorLayout
-CoordinatorLayout is a super-powered FrameLayout.CoordinatorLayout is intended for two primary use cases:1.As a top-level applic
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/MaterialDesign（三），CoordinatorLayout、AppBarLayout、CollapsingToolbarLayout使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/MaterialDesign（二），DrawerLayout使用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈业盛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈业盛's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/MaterialDesign（二），DrawerLayout使用/" itemprop="url">MaterialDesign（二），DrawerLayout使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T16:23:58Z">
-                2018-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/MaterialDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">MaterialDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          什么是 DrawerLayout
-DrawerLayout（抽屉式导航栏）是一个面板，它将应用的主要导航选项显示在屏幕左边缘。大多数情况下，它处于隐藏状态，但是如果用户从屏幕左边缘滑动手指，同时在应用顶层触摸操作栏中的应用图标，它将会显示出来
-
-简单来说这是一个实现了侧滑菜单效果的控件，主要分为侧边
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/MaterialDesign（二），DrawerLayout使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -1045,9 +294,7 @@ DrawerLayout（抽屉式导航栏）是一个面板，它将应用的主要导�
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/MaterialDesign（一），ToolBar使用/" itemprop="url">MaterialDesign（一），ToolBar使用</a></h1>
+          <h1 class="post-title" itemprop="name headline">MaterialDesign（一），ToolBar使用</h1>
         
 
         <div class="post-meta">
@@ -1059,7 +306,7 @@ DrawerLayout（抽屉式导航栏）是一个面板，它将应用的主要导�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T16:20:00Z">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-23T00:20:00+08:00">
                 2018-11-22
               </time>
             
@@ -1119,19 +366,55 @@ DrawerLayout（抽屉式导航栏）是一个面板，它将应用的主要导�
       
 
       
-        
-          
-          什么是 Toolbar
-A Toolbar is a generalization of action bars for use within application layouts. While an action bar is traditionally part of an Activity’
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/MaterialDesign（一），ToolBar使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h1 id="什么是-Toolbar"><a href="#什么是-Toolbar" class="headerlink" title="什么是 Toolbar"></a>什么是 Toolbar</h1><blockquote>
+<p>A Toolbar is a generalization of action bars for use within application layouts. While an action bar is traditionally part of an Activity’s opaque window decor controlled by the framework, a Toolbar may be placed at any arbitrary level of nesting within a view hierarchy. An application may choose to designate a Toolbar as the action bar for an Activity using the setSupportActionBar() method.</p>
+</blockquote>
+<p>以上是官方的介绍，简单来说 Toolbar 是在 Android 5.0 开始推出的一个 Material Design 风格的导航控件，Toolbar 可作为应用的导航控件，可以替代以前的 ActionBar。比 ActionBar 更佳灵活，不一定要固定在 Activity 的顶部，而是可以嵌套在任意位置。应用可以使用<code>setSupportActionBar()</code>方法将 Toolbar 设置为 Activity 的 ActionBar。</p>
+<p>Toolbar 为我们提供了一些可定制的修改属性，根据API文档的介绍，主要有以下几类：</p>
+<ul>
+<li>可设置导航栏图标</li>
+<li>可设置 App 的 logo</li>
+<li>可设置标题和子标题</li>
+<li>可添加一个或多个的自定义控件</li>
+<li>可添加 ActionMenu</li>
+</ul>
+<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><p>按照惯例，我们先看一下效果图：<br><img src="http://upload-images.jianshu.io/upload_images/1131117-247da59ae360eaff.gif?imageMogr2/auto-orient/strip" alt="Toolbar.gif"></p>
+<p>从效果图来看，从左到右分别是我们设置的 <strong>导航栏图标、App的logo、标题和副标题、自定义控件、ActionMenu</strong>。下面我们来看具体的代码实现。</p>
+<ol>
+<li><p>引入v7包<br>由于 Toolbar 是v7包的一个控件，首先需要引入该包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;com.android.support:appcompat-v7:26.1.0&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>XML 添加 Toolbar</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.v7.widget.Toolbar</span><br><span class="line">    android:id=&quot;@+id/toolbar&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android:background=&quot;@color/colorPrimary&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--此处可以添加自定义控件--&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;custom&quot;</span><br><span class="line">        android:textColor=&quot;@android:color/white&quot;</span><br><span class="line">        android:textSize=&quot;16sp&quot;/&gt;</span><br><span class="line">&lt;/android.support.v7.widget.Toolbar&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 menu_toolbar.xml 存放在 res/layout/menu 目录下，用于为 Toolbar 设置 ActionMenu</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">      xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--右侧搜索操作条目--&gt;</span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_search&quot;</span><br><span class="line">        android:icon=&quot;@drawable/ic_search_white_24dp&quot;</span><br><span class="line">        android:title=&quot;搜索&quot;</span><br><span class="line">        app:showAsAction=&quot;ifRoom&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--右侧设置条目，收起--&gt;</span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_setting&quot;</span><br><span class="line">        android:title=&quot;设置&quot;</span><br><span class="line">        app:showAsAction=&quot;never&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_help&quot;</span><br><span class="line">        android:title=&quot;帮助&quot;</span><br><span class="line">        app:showAsAction=&quot;never&quot;/&gt;</span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>重点关注一下 <code>app:showAsAction</code> 属性，该属性有以下几种取值</p>
+<ul>
+<li>always：使菜单项一直显示在 Toolbar 上</li>
+<li>ifRoom：如果有足够的空间，这个值会使菜单项显示在 Toolbar 上</li>
+<li>never：使菜单项永远都不出现在 Toolbar 上,在…的子项中显示</li>
+<li>withText：使菜单项和它的图标，菜单文本一起显示</li>
+</ul>
+<ol start="4">
+<li>Activity 中获取并设置相关属性值，以及事件监听<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onCreate(@Nullable Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    // 隐藏系统默认的导航栏</span><br><span class="line">    supportRequestWindowFeature(Window.FEATURE_NO_TITLE);</span><br><span class="line">    setContentView(R.layout.activity_toolbar);</span><br><span class="line">    ButterKnife.bind(this);</span><br><span class="line"></span><br><span class="line">    initToolbar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void initToolbar() &#123;</span><br><span class="line">    // 设置ActionMenu布局（方式一）</span><br><span class="line">    mToolbar.inflateMenu(R.menu.menu_toobar);</span><br><span class="line">    // 设置logo</span><br><span class="line">    mToolbar.setLogo(R.mipmap.ic_launcher_round);</span><br><span class="line">    // 设置标题</span><br><span class="line">    mToolbar.setTitle(&quot;title&quot;);</span><br><span class="line">    // 设置副标题</span><br><span class="line">    mToolbar.setSubtitle(&quot;sub title&quot;);</span><br><span class="line">    // 设置标题的字体颜色</span><br><span class="line">    mToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));</span><br><span class="line">    // 设置子标题的字体颜色</span><br><span class="line">    mToolbar.setSubtitleTextColor(getResources().getColor(android.R.color.white));</span><br><span class="line"></span><br><span class="line">//        setSupportActionBar(mToolbar);</span><br><span class="line">    // 设置导航按钮图标</span><br><span class="line">    mToolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);</span><br><span class="line">    // 设置更多按钮图标</span><br><span class="line">    mToolbar.setOverflowIcon(getResources().getDrawable(R.drawable.ic_more_horiz_white_24dp));</span><br><span class="line"></span><br><span class="line">    // 设置导航图标的点击事件（方式一）</span><br><span class="line">    mToolbar.setNavigationOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void onClick(View view) &#123;</span><br><span class="line">            mDrawerLayout.openDrawer(GravityCompat.START);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    // 设置各菜单的点击事件（方式一）</span><br><span class="line">    mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public boolean onMenuItemClick(MenuItem item) &#123;</span><br><span class="line">            int id = item.getItemId();</span><br><span class="line">            String tip = &quot;&quot;;</span><br><span class="line">            switch (id) &#123;</span><br><span class="line">                case R.id.action_search:</span><br><span class="line">                    tip = &quot;搜索&quot;;</span><br><span class="line">                    break;</span><br><span class="line">                case R.id.action_setting:</span><br><span class="line">                    tip = &quot;设置&quot;;</span><br><span class="line">                    break;</span><br><span class="line">                case R.id.action_help:</span><br><span class="line">                    tip = &quot;帮助&quot;;</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">            Toast.makeText(ToolbarActivity.this, tip, Toast.LENGTH_SHORT).show();</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>设置 ActionMenu 和设置 点击事件以上是第一种方式，还可以使用以下方式，效果一样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;</span><br><span class="line">    // 设置ActionMenu布局（方式二）</span><br><span class="line">    getMenuInflater().inflate(R.menu.menu_toobar, menu);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public boolean onOptionsItemSelected(MenuItem item) &#123;</span><br><span class="line">    int id = item.getItemId();</span><br><span class="line">    String tip = &quot;&quot;;</span><br><span class="line">    switch (id) &#123;</span><br><span class="line">        // 对应 NavigationIcon 的点击</span><br><span class="line">        case android.R.id.home:</span><br><span class="line">            tip = &quot;菜单&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case R.id.action_search:</span><br><span class="line">            tip = &quot;搜索&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case R.id.action_setting:</span><br><span class="line">            tip = &quot;设置&quot;;</span><br><span class="line">            break;</span><br><span class="line">        case R.id.action_help:</span><br><span class="line">            tip = &quot;帮助&quot;;</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">    Toast.makeText(ToolbarActivity.this, tip, Toast.LENGTH_SHORT).show();</span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重写 Activity 的 <code>onCreateOptionsMenu</code> 和 <code>onOptionsItemSelected</code> 方法即可</p>
+<p>到此已经实现了一开始所看到的效果</p>
+<h1 id="使用中的一些坑"><a href="#使用中的一些坑" class="headerlink" title="使用中的一些坑"></a>使用中的一些坑</h1><ol>
+<li><p>ActionMenu 无法显示<br>如果我们在代码中调用了 <code>setSupportActionBar</code> 方法设置了 Toolbar，此时如果使用第一种方式（<code>mToolbar.inflateMenu(R.menu.menu_toobar)</code>）创建 ActionMenu 则会导致无法显示，需使用第二种方式（重新 onCreateOptionsMenu）来创建 ActionMenu 才可以</p>
+</li>
+<li><p>mToolbar.setTitle 不生效<br>如果先调用了 <code>setSupportActionBar</code> 方法后，再调用 <code>mToolbar.setTitle(&quot;title&quot;)</code> 来设置 title 的话会导致无法生效，需先调用 <code>mToolbar.setTitle(&quot;title&quot;)</code> 再调用 <code>setSupportActionBar</code> 才能生效</p>
+</li>
+<li><p>NavigationIcon 与右侧内容间距太大<br>这个问题应该挺多人遇到过，其实可以通过在 xml 给 Toolbar 设置 <code>app:contentInsetStartWithNavigation=&quot;0dp&quot;</code> 或在代码中使用 <code>setContentInsetStartWithNavigation(int)</code> 方法进行设置，来控制NavigationIcon 与右侧内容的间距</p>
+</li>
+</ol>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>本文只是简单地介绍了 Toolbar 和其使用，虽然该控件已经很完善了，不过实际开发中还是为自定义导航栏为主，主要方便扩展，想了解 Toolbar 的更多介绍以及相关 API 请参考<a href="https://developer.android.com/reference/android/support/v7/widget/Toolbar.html" target="_blank" rel="noopener">官方文档</a>(需要梯子)，本文 demo 已上传到 <a href="https://github.com/chenyesheng/MaterialDesignDemo" target="_blank" rel="noopener">github</a></p>
+
       
     </div>
     
@@ -1146,167 +429,42 @@ A Toolbar is a generalization of action bars for use within application layouts.
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/Android布局优化/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈业盛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈业盛's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/Android布局优化/" itemprop="url">Android布局优化</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T16:06:49Z">
-                2018-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android性能优化/" itemprop="url" rel="index">
-                    <span itemprop="name">Android性能优化</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/ToolBar/" rel="tag"># ToolBar</a>
           
-
+            <a href="/tags/MaterialDesign/" rel="tag"># MaterialDesign</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          
-本文主要记录Android布局优化的一些小技巧Android中，如果一个View树的高度太高，就会严重影响测量，布局和绘制的速度，因此可以使用一些方法来降低View树的高度，提高用户体验
-
-避免使用过多嵌套先来看一个非常常见的效果
-
-相信这样的效果对我们来说完全不是问题，然而很多人会这样写布局12
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/Android布局优化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/23/Android布局优化/" rel="next" title="Android布局优化">
+                <i class="fa fa-chevron-left"></i> Android布局优化
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/23/MaterialDesign（二），DrawerLayout使用/" rel="prev" title="MaterialDesign（二），DrawerLayout使用">
+                MaterialDesign（二），DrawerLayout使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1316,10 +474,11 @@ A Toolbar is a generalization of action bars for use within application layouts.
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -1327,6 +486,10 @@ A Toolbar is a generalization of action bars for use within application layouts.
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1347,8 +510,17 @@ A Toolbar is a generalization of action bars for use within application layouts.
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1424,6 +596,22 @@ A Toolbar is a generalization of action bars for use within application layouts.
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Toolbar"><span class="nav-number">1.</span> <span class="nav-text">什么是 Toolbar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单使用"><span class="nav-number">2.</span> <span class="nav-text">简单使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用中的一些坑"><span class="nav-number">3.</span> <span class="nav-text">使用中的一些坑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1571,6 +759,10 @@ A Toolbar is a generalization of action bars for use within application layouts.
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
